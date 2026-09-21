@@ -58,7 +58,12 @@
     bodyEl.innerHTML = '<div class="fcp-pp__loading">Loading…</div>';
     scrim.hidden = false;
     document.body.classList.add("fcp-pp-open");
-    requestAnimationFrame(function(){ scrim.classList.add("is-open"); });
+    /* Force a reflow, then reveal synchronously. requestAnimationFrame is throttled
+       in hidden or backgrounded tabs and could leave the popup stuck at opacity 0,
+       which reads to the user as the link doing nothing. */
+    void scrim.offsetWidth;
+    scrim.classList.add("is-open");
+    setTimeout(function(){ if (scrim && !scrim.hidden) scrim.classList.add("is-open"); }, 60);
     document.addEventListener("keydown", onKey);
     openUrl = href;
     if (push) { try { history.pushState({fcpPost:href}, "", href); } catch(e){} }
