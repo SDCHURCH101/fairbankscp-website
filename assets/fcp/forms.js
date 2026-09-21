@@ -34,11 +34,14 @@
     }
     hint = hint.trim();
     if (!hint) return n;
+    /* check first/last before the generic name test, or both collapse to "Name" */
+    if (/first\s*name/i.test(hint)) return "First_Name";
+    if (/last\s*name|surname/i.test(hint)) return "Last_Name";
     if (/mail/i.test(hint)) return "Email";
     if (/phone|tel/i.test(hint)) return "Phone";
-    if (/name/i.test(hint)) return "Name";
     if (/message|comment|tell us/i.test(hint)) return "Message";
     if (/company|business/i.test(hint)) return "Company";
+    if (/name/i.test(hint)) return "Name";
     return hint.replace(/[^A-Za-z0-9 ]/g, "").replace(/\s+/g, "_").slice(0, 40) || n;
   }
 
@@ -61,12 +64,15 @@
     clone.className = clone.className.replace(/js-form-proccess/g, "fcp-form");
     clone.dataset.fcpFixed = "1";
 
+    var used = {};
     Array.prototype.forEach.call(clone.querySelectorAll("input,textarea,select"), function (el) {
       var n = el.getAttribute("name") || "";
       if (n.indexOf("tildaspec") === 0 || n === "form-spec-comments") { el.remove(); return; }
       if (n.charAt(0) === "_") return;                       /* our own control fields */
-      var fn = friendlyName(el);
-      if (fn && fn !== n) el.setAttribute("name", fn);
+      var fn = friendlyName(el) || n;
+      if (used[fn]) { used[fn]++; fn = fn + "_" + used[fn]; }  /* never duplicate a name */
+      else used[fn] = 1;
+      if (fn !== n) el.setAttribute("name", fn);
     });
 
     hidden(clone, "_subject", SUBJECT);
