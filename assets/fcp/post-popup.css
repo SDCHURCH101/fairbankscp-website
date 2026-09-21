@@ -1,0 +1,69 @@
+/* ===== FCP post popup (local copy) =====
+   The live site opens an Insights post in a centred Tilda CMS popup with a close
+   cross. That popup is built by tilda-cms at runtime from the feed API, which only
+   answers on the live domain, so offline the cards simply navigated away with no way
+   back. This recreates the same behaviour using the site's own popup classes. */
+
+.fcp-pp{
+  position:fixed; inset:0; z-index:2147483600;
+  display:flex; align-items:flex-start; justify-content:center;
+  padding:56px 20px 40px;
+  padding-top:max(56px, calc(env(safe-area-inset-top,0px) + 56px));
+  background:rgba(10,14,20,.72);
+  overflow-y:auto; -webkit-overflow-scrolling:touch;
+  opacity:0; transition:opacity .18s ease;
+}
+.fcp-pp.is-open{ opacity:1; }
+.fcp-pp[hidden]{ display:none !important; }
+
+.fcp-pp__box{
+  position:relative; width:100%; max-width:760px;
+  background:#17191c; color:#fff; border-radius:32px; overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,.45);
+  transform:translateY(8px); transition:transform .18s ease;
+}
+.fcp-pp.is-open .fcp-pp__box{ transform:none; }
+
+/* close cross, styled like the site's own t-popup close */
+.fcp-pp__close{
+  position:absolute; top:14px; right:14px; z-index:2;
+  width:44px; height:44px; padding:0;
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(255,255,255,.08); border:0; border-radius:50%;
+  cursor:pointer; transition:background .15s ease;
+}
+.fcp-pp__close:hover{ background:rgba(255,255,255,.18); }
+.fcp-pp__close:focus-visible{ outline:2px solid #7fb2ff; outline-offset:2px; }
+.fcp-pp__close svg{ display:block; }
+
+.fcp-pp__body{ padding:54px 40px 40px; }
+.fcp-pp__body .t-cms__page{ width:100% !important; max-width:none !important; }
+.fcp-pp__body img{ max-width:100%; height:auto; }
+.fcp-pp__body a{ color:inherit; }
+
+.fcp-pp__loading{ padding:60px 20px; text-align:center; color:#9aa4b0;
+  font:400 14px/1.5 'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; }
+
+@media (max-width:640px){
+  .fcp-pp{ padding:0; }
+  .fcp-pp__box{ max-width:none; min-height:100%; border-radius:0; }
+  .fcp-pp__body{ padding:64px 20px 40px;
+    padding-bottom:max(40px, calc(env(safe-area-inset-bottom,0px) + 40px)); }
+  .fcp-pp__close{ top:10px; right:10px; }
+}
+@media (prefers-reduced-motion:reduce){
+  .fcp-pp,.fcp-pp__box{ transition:none; }
+}
+
+body.fcp-pp-open{ overflow:hidden; }
+
+/* standalone post pages: a way back to Insights when opened directly */
+.fcp-back{
+  position:fixed; top:calc(var(--fcp-bar-h,40px) + 12px); right:16px; z-index:2147483000;
+  width:44px; height:44px; display:flex; align-items:center; justify-content:center;
+  background:rgba(20,24,30,.72); border:1px solid rgba(255,255,255,.18);
+  border-radius:50%; cursor:pointer; transition:background .15s ease;
+}
+.fcp-back:hover{ background:rgba(20,24,30,.92); }
+.fcp-back:focus-visible{ outline:2px solid #7fb2ff; outline-offset:2px; }
+@media print{ .fcp-pp,.fcp-back{ display:none !important; } }
