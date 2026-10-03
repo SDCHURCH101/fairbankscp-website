@@ -678,31 +678,31 @@ id="molecule-1782303678762000001"> <div class='t396__elem tn-elem t396__elem-fle
      is touched. Delete this block to remove.
 ======================================================================= -->
 <style>
- .fcp-band{position:relative;width:100%;overflow:hidden;background:#0a1322;}
- .fcp-band__img{display:block;width:100%;height:clamp(300px,38vw,520px);object-fit:cover;
-   object-position:center 78%;}
- .fcp-band__scrim{position:absolute;inset:auto 0 0 0;height:42%;pointer-events:none;
-   background:linear-gradient(to bottom,rgba(8,14,26,0),rgba(8,14,26,.62));}
- .fcp-band__cap{position:absolute;left:0;right:0;bottom:0;
-   padding:0 24px 22px;max-width:1200px;margin:0 auto;
+ /* Contained rather than full-bleed: a 3:2 photograph cropped to a wide band loses
+    either the aurora or the buildings. At a capped width the whole frame shows. */
+ .fcp-band{background:#0a1322;padding:0 0 0;}
+ .fcp-band__inner{position:relative;max-width:1180px;margin:0 auto;}
+ .fcp-band__img{display:block;width:100%;height:auto;}
+ .fcp-band__scrim{position:absolute;inset:auto 0 0 0;height:34%;pointer-events:none;
+   background:linear-gradient(to bottom,rgba(8,14,26,0),rgba(8,14,26,.6));}
+ .fcp-band__cap{position:absolute;left:0;right:0;bottom:0;padding:0 26px 20px;
    font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#fff;}
  .fcp-band__eyebrow{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
-   color:rgba(255,255,255,.72);margin:0 0 5px;}
- .fcp-band__line{font-size:clamp(16px,2.1vw,22px);line-height:1.35;font-weight:500;margin:0;
-   max-width:30ch;text-shadow:0 1px 18px rgba(0,0,0,.5);}
- @media (max-width:640px){
-   .fcp-band__img{height:260px;}
-   .fcp-band__cap{padding:0 20px 18px;}
- }
+   color:rgba(255,255,255,.75);margin:0 0 5px;}
+ .fcp-band__line{font-size:clamp(16px,2vw,21px);line-height:1.35;font-weight:500;margin:0;
+   max-width:32ch;text-shadow:0 1px 18px rgba(0,0,0,.55);}
+ @media (max-width:640px){ .fcp-band__cap{padding:0 18px 15px;} }
 </style>
 <div class="fcp-band">
-  <img class="fcp-band__img" src="/assets/property/frontier/aurora-frontier-wide.jpg?v=3163cc52"
+  <div class="fcp-band__inner">
+  <img class="fcp-band__img" src="/assets/property/frontier/aurora-frontier-wide.jpg?v=eed25e22"
        alt="Aurora over the Frontier industrial yard at Prudhoe Bay, Alaska"
-       width="1800" height="900" loading="lazy">
+       width="1800" height="1200" loading="lazy">
   <div class="fcp-band__scrim"></div>
   <div class="fcp-band__cap">
     <div class="fcp-band__eyebrow">Frontier, Prudhoe Bay</div>
     <p class="fcp-band__line">Our yard on the North Slope, under the winter sky.</p>
+  </div>
   </div>
 </div>
 <!-- ==== end FCP-AURORA-BAND ==== -->
