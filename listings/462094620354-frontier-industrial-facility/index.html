@@ -79,10 +79,7 @@ document.addEventListener('DOMContentLoaded',t_setvisRecs);}})();</script><scrip
    "provider": {
     "@id": "https://www.fairbankscp.com/#organization"
    },
-   "image": [
-    "https://www.fairbankscp.com/assets/static.tildacdn.one/stor6662-3630-4232-a466-623866323835/90fd8e1a1846e308dc6c6beda9636627.jpg",
-    "https://www.fairbankscp.com/assets/property/frontier/aurora-frontier.jpg"
-   ],
+   "image": "https://www.fairbankscp.com/assets/static.tildacdn.one/stor6662-3630-4232-a466-623866323835/90fd8e1a1846e308dc6c6beda9636627.jpg",
    "about": {
     "@type": "Place",
     "name": "Frontier Industrial Facility"
@@ -2210,24 +2207,12 @@ window.tildastatcookie='no';setTimeout(function(){(function(d,w,k,o,g) {var n=d.
 <script src="/assets/fcp/forms.js?v=efd66ae0" defer></script>
 <!-- ==== end FCP-FORMS ==== -->
 
-<!-- ==== FCP-PROPERTY-GALLERY ==== -->
-<style>
- .fcp-gal{max-width:1200px;margin:34px auto 10px;padding:0 20px;
-   font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
- .fcp-gal__head{font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
-   color:#8b9bad;margin:0 0 16px;}
- .fcp-gal__feature{margin:0;border-radius:12px;overflow:hidden;background:#0e1a2b;
-   max-width:720px;}
- .fcp-gal__feature img{width:100%;height:auto;display:block;}
- .fcp-gal__cap{margin:10px 0 0;font-size:13px;line-height:1.5;color:#8b9bad;max-width:60ch;}
-</style>
-<div class="fcp-gal">
-  <div class="fcp-gal__head">Frontier, property photograph</div>
-  <figure class="fcp-gal__feature">
-    <img src="/assets/property/frontier/aurora-frontier.jpg" alt="Aurora over the Frontier industrial facility at Prudhoe Bay, the lit yard and buildings under the northern lights"
-         width="1500" height="2000" loading="lazy">
-  </figure>
-  <p class="fcp-gal__cap">The Frontier yard at Prudhoe Bay under the northern lights.</p>
-</div>
-<!-- ==== end FCP-PROPERTY-GALLERY ==== -->
+
+<!-- ==== FCP-LISTING-IMAGE ====
+     Fills the product image area from <meta itemprop="image">, which Tilda's
+     removed catalog script used to do. Without it the area reserved 4:3 of
+     blank space at opacity 0 above the title.
+============================================================ -->
+<script src="/assets/fcp/listing-image.js?v=af6ef1dd" defer></script>
+<!-- ==== end FCP-LISTING-IMAGE ==== -->
 </body> </html>
